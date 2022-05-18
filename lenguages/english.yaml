@@ -1,0 +1,35 @@
+root_window:
+  title: Calculator
+  boton_clear: Clear
+  errors:
+    zero_divicion_error: "Error: zero divicion error"
+    name_error: "Error: syntax error"
+
+styles_window:
+  title: Skins
+  boton_select: Apply
+  boton_brows: Add...
+  boton_delet: Remove...
+  errors:
+    file_not_found_error:
+      title: Error
+      message: Theme not found
+  show_file:
+    title: Open Archive
+    messagebox:
+      title: Skins
+      message: Theme was added
+  tab:
+    tab1: Skins
+    tab2: Lenguage
+    message: "Select Lenguage was successfully loaded\nApp restart required"
+
+delet_list:
+  title: Remove Skins
+  boton_delet: Remove
+  delet_style: 
+    title: Remove Skins
+    message: "Are you sure want to delet themes?"
+    messagebox:
+      title: Remove Skins
+      message: "Select Themes was successfully removed"

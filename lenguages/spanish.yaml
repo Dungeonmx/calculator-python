@@ -1,0 +1,35 @@
+root_window:
+  title: Calculadora
+  boton_clear: Borrar
+  errors:
+    zero_divicion_error: "Error: no se puede dividir entre cero"
+    name_error: "Error: operación invalida"
+
+styles_window:
+  title: Configuracion
+  boton_select: Aplicar
+  boton_brows: Agregar...
+  boton_delet: Eliminar...
+  errors:
+    file_not_found_error:
+      title: Error
+      message: El tema no existe o se a eliminado
+  show_file:
+    title: Abrir Archivo
+    messagebox:
+      title: Temas
+      message: El tema se agrego correctamente
+  tab:
+    tab1: Temas
+    tab2: Idiomas
+    message: "El idioma se guardo con exito\nReiniciar para aplicar los cambios"
+
+delet_list:
+  title: Eliminar estilo
+  boton_delet: Eliminar
+  delet_style: 
+    title: Eliminar temas
+    message: "Estas segura de eliminar\nlos temas seleccionados"
+    messagebox:
+      title: Eliminar temas
+      message: "Los temas seleccionados\nse eliminaron corectamente"

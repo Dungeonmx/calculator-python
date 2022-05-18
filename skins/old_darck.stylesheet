@@ -1,0 +1,45 @@
+QWidget{
+    background-color:rgb(70,70,70);
+}
+QPushButton{
+    background:rgb(47, 47, 47);
+    color: white;
+    padding: 15px 30px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 12pt
+}
+QPushButton:hover{
+    background: lightblue;
+}
+QPushButton:pressed{
+    background: white;
+}
+QComboBox{
+    background:rgb(47, 47, 47);
+    color: white;
+    padding: 10px 10px;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-size: 12pt
+}
+QListView{
+    color: #ffffff;
+    border: none;
+    padding: 5px 5px;
+}
+QLineEdit{
+    background-color: white;
+    border:none;
+    border-bottom: 5px solid rgba(46,82,101,200);
+    padding.bottom: 5px;
+    font-size: 18pt;
+}
+QLabel{
+    font-size: 12pt;
+    color: #ffffff;
+}
+QCheckBox{
+    font-size: 12pt;
+    color: #ffffff;
+}
