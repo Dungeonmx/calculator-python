@@ -31,6 +31,9 @@ QListView{
     border: none;
     padding: 5px 5px;
 }
+QListView::TopToBottom {
+    border: none;
+}
 QLineEdit{
     background-color: rgba(0,0,0,80);
     border-top-left-radius: 8px;
@@ -48,4 +51,21 @@ QLabel{
 QCheckBox{
     font-size: 12pt;
     color: #ffffff;
+}
+QRadioButton{
+    font-size: 12pt;
+    color: #fff;
+}
+QTabWidget:pane {
+    border: none;
+}
+QTabBar::tab {
+    background-color: #212121;
+    color: white;
+    padding: 10px;
+    border-bottom: 5px solid #323232;
+}
+
+QTabBar::tab:selected {
+    background-color: #0D7377;
 }

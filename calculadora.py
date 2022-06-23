@@ -3,13 +3,14 @@ import PyQt5.QtGui as qtg
 import yaml
 import os
 
+
 class MainWindow(qtw.QMainWindow):
     def __init__(self):
         super().__init__()
 
         self.setWindowIcon(qtg.QIcon("./textures/calculator.png"))
         self.setWindowTitle(lg["root_window"]["title"])
-        
+
         self.setings = qtw.QPushButton()
         self.setings.setStyleSheet("image: url(./textures/configuracion2.png)")
         self.panel = qtw.QLineEdit()
@@ -35,27 +36,27 @@ class MainWindow(qtw.QMainWindow):
         self.widget = qtw.QWidget(self)
         self.setCentralWidget(self.widget)
         self.widget.setLayout(self.layout)
-        
-        self.layout.addWidget(self.panel,0,0,1,4)
-        self.layout.addWidget(self.botonclear,1,0,1,3)
-        self.layout.addWidget(self.setings,1,3)
-        self.layout.addWidget(self.boton7,2,0)
-        self.layout.addWidget(self.boton8,2,1)
-        self.layout.addWidget(self.boton9,2,2)
-        self.layout.addWidget(self.botondividir,2,3)
-        self.layout.addWidget(self.boton4,3,0)
-        self.layout.addWidget(self.boton5,3,1)
-        self.layout.addWidget(self.boton6,3,2)
-        self.layout.addWidget(self.botonmultiplicar,3,3)
-        self.layout.addWidget(self.boton1,4,0)
-        self.layout.addWidget(self.boton2,4,1)
-        self.layout.addWidget(self.boton3,4,2)
-        self.layout.addWidget(self.botonmenos,4,3)
-        self.layout.addWidget(self.botoncoma,5,0)
-        self.layout.addWidget(self.boton0,5,1)
-        self.layout.addWidget(self.botonigual,5,2)
-        self.layout.addWidget(self.botonmas,5,3)
-        
+
+        self.layout.addWidget(self.panel, 0, 0, 1, 4)
+        self.layout.addWidget(self.botonclear, 1, 0, 1, 3)
+        self.layout.addWidget(self.setings, 1, 3)
+        self.layout.addWidget(self.boton7, 2, 0)
+        self.layout.addWidget(self.boton8, 2, 1)
+        self.layout.addWidget(self.boton9, 2, 2)
+        self.layout.addWidget(self.botondividir, 2, 3)
+        self.layout.addWidget(self.boton4, 3, 0)
+        self.layout.addWidget(self.boton5, 3, 1)
+        self.layout.addWidget(self.boton6, 3, 2)
+        self.layout.addWidget(self.botonmultiplicar, 3, 3)
+        self.layout.addWidget(self.boton1, 4, 0)
+        self.layout.addWidget(self.boton2, 4, 1)
+        self.layout.addWidget(self.boton3, 4, 2)
+        self.layout.addWidget(self.botonmenos, 4, 3)
+        self.layout.addWidget(self.botoncoma, 5, 0)
+        self.layout.addWidget(self.boton0, 5, 1)
+        self.layout.addWidget(self.botonigual, 5, 2)
+        self.layout.addWidget(self.botonmas, 5, 3)
+
         self.setings.clicked.connect(self.showdialog)
         self.boton0.clicked.connect(lambda: self.printnumber("0"))
         self.boton1.clicked.connect(lambda: self.printnumber("1"))
@@ -80,7 +81,7 @@ class MainWindow(qtw.QMainWindow):
         self.layout_menu = qtw.QVBoxLayout()
         self.menu = qtw.QWidget(self)
         self.menu.setLayout(self.layout_menu)
-        self.menu.setGeometry(0,0,0,0)
+        self.menu.setGeometry(0, 0, 0, 0)
 
         self.title = qtw.QLabel("Menu")
         self.style_bn = qtw.QPushButton("Estilo")
@@ -95,31 +96,34 @@ class MainWindow(qtw.QMainWindow):
         for i in self.list:
             endlist += i
         self.panel.setText(endlist)
-    
+
     def clearnumber(self):
         self.list = []
         self.panel.clear()
 
     def resultado(self):
-            try:
-                resultado = eval(self.panel.text())
-                self.clearnumber
-                self.list = []
-                self.printnumber(str(resultado))
-            except ZeroDivisionError:
-                self.list = []
-                self.printnumber(lg["root_window"]["errors"]["zero_divicion_error"])
-                self.list = []
-            except NameError:
-                self.list = []
-                self.printnumber(lg["root_window"]["errors"]["name_error"])
+        try:
+            resultado = eval(self.panel.text())
+            self.clearnumber
+            self.list = []
+            self.printnumber(str(resultado))
+        except ZeroDivisionError:
+            self.list = []
+            self.printnumber(
+                lg["root_window"]["errors"]["zero_divicion_error"]
+                )
+            self.list = []
+        except NameError:
+            self.list = []
+            self.printnumber(lg["root_window"]["errors"]["name_error"])
 
     def showdialog(self):
         dialog = Dialog(self)
         dialog.show()
-    
+
     def show_menu(self):
-        self.menu.setGeometry(0,0,100,300)
+        self.menu.setGeometry(0, 0, 100, 300)
+
 
 class Dialog(qtw.QMainWindow):
     def __init__(self, *args):
@@ -131,11 +135,11 @@ class Dialog(qtw.QMainWindow):
 
         self.widget = qtw.QWidget(self)
         self.setCentralWidget(self.widget)
-        
+
         self.theme_widget = qtw.QWidget()
         self.layout = qtw.QGridLayout()
         self.theme_widget.setLayout(self.layout)
-        
+
         self.items = []
         files = os.listdir(r"./skins")
         for i in files:
@@ -144,16 +148,18 @@ class Dialog(qtw.QMainWindow):
         self.combobox = qtw.QComboBox()
         self.combobox.addItems(self.items)
         self.select = qtw.QPushButton(lg["styles_window"]["boton_select"])
-        self.select.clicked.connect(lambda: self.updatevalue(self.combobox.currentText()))
+        self.select.clicked.connect(
+            lambda: self.updatevalue(self.combobox.currentText())
+            )
         self.brows = qtw.QPushButton(lg["styles_window"]["boton_brows"])
         self.brows.clicked.connect(self.showfile)
         self.delet = qtw.QPushButton(lg["styles_window"]["boton_delet"])
         self.delet.clicked.connect(self.show_delet)
-        
+
         self.layout.addWidget(self.combobox, 0, 0)
         self.layout.addWidget(self.select, 0, 1)
         self.layout.addWidget(self.brows, 1, 0)
-        self.layout.addWidget(self.delet, 2 , 0)
+        self.layout.addWidget(self.delet, 2, 0)
 
         self.lenguge_widget = qtw.QWidget()
         self.layout_lenguage = qtw.QVBoxLayout()
@@ -163,18 +169,22 @@ class Dialog(qtw.QMainWindow):
         self.english = qtw.QRadioButton("English")
         self.select_lenguage = qtw.QPushButton(
             lg["styles_window"]["boton_select"],
-            clicked = lambda: self.updatelenguage()
+            clicked=lambda: self.updatelenguage()
         )
 
         for i in [self.spanish, self.english, self.select_lenguage]:
             self.layout_lenguage.addWidget(i)
-        
-
 
         self.tab_widget = qtw.QTabWidget(self)
         self.tab_widget.setMinimumSize(400, 250)
-        self.tab_widget.addTab(self.theme_widget, lg["styles_window"]["tab"]["tab1"])
-        self.tab_widget.addTab(self.lenguge_widget, lg["styles_window"]["tab"]["tab2"])
+        self.tab_widget.addTab(
+            self.theme_widget,
+            lg["styles_window"]["tab"]["tab1"]
+            )
+        self.tab_widget.addTab(
+            self.lenguge_widget,
+            lg["styles_window"]["tab"]["tab2"]
+            )
 
     def updatevalue(self, name):
         with open("savestyle.yaml", "r") as file:
@@ -193,22 +203,22 @@ class Dialog(qtw.QMainWindow):
                 lg["styles_window"]["errors"]["file_not_found_error"]["title"],
                 lg["styles_window"]["errors"]["file_not_found_error"]["message"]
                 )
-    
+
     def updatelenguage(self):
         if self.spanish.isChecked():
             var = "spanish"
         if self.english.isChecked():
             var = "english"
-        
+
         with open("savestyle.yaml", "r") as file:
             newconf = yaml.safe_load(file)
             file.close
-        
+
         with open("savestyle.yaml", "w") as file:
             newconf["lenguage"] = var
             yaml.safe_dump(newconf, file)
             file.close()
-        
+
         qtw.QMessageBox.about(
             self,
             lg["styles_window"]["tab"]["tab2"],
@@ -232,7 +242,7 @@ class Dialog(qtw.QMainWindow):
             with open(f"./skins/{name}", "w") as file:
                 file.write(open(f"{url}", "r").read())
                 file.close()
-            
+
             qtw.QMessageBox.about(
                 self,
                 lg["styles_window"]["show_file"]["messagebox"]["title"],
@@ -240,10 +250,11 @@ class Dialog(qtw.QMainWindow):
                 )
         except PermissionError:
             pass
-    
+
     def show_delet(self):
         Delet = DeletList(self)
         Delet.show()
+
 
 class DeletList(qtw.QMainWindow):
     def __init__(self, *args):
@@ -270,30 +281,31 @@ class DeletList(qtw.QMainWindow):
         self.delet = qtw.QPushButton(lg["delet_list"]["boton_delet"])
         self.layout.addWidget(self.delet)
         self.delet.clicked.connect(self.delet_style)
-    
+
     def delet_style(self):
         self.message = qtw.QMessageBox.question(
             self,
             lg["delet_list"]["delet_style"]["title"],
             lg["delet_list"]["delet_style"]["message"]
             )
-        
+
         if self.message == qtw.QMessageBox.Yes:
             self.check_list = []
             for i in self.list:
                 exec(f"self.check_list.append(self.{i})")
-            
+
             print(self.check_list)
             for i in self.check_list:
-                if i.isChecked() == True:
+                if i.isChecked() is True:
                     os.remove(f"skins/{i.text()}.stylesheet")
-            
+
             qtw.QMessageBox.about(
                 self,
                 lg["delet_list"]["delet_style"]["messagebox"]["title"],
                 lg["delet_list"]["delet_style"]["messagebox"]["message"]
                 )
             self.destroy()
+
 
 if __name__ == "__main__":
     def setstyle(self):
@@ -308,10 +320,10 @@ if __name__ == "__main__":
         name = config["status"]
         lenguage = config["lenguage"]
         file.close()
-    
+
     with open(f"./lenguages/{lenguage}.yaml", "r") as file:
         lg = yaml.safe_load(file)
-    
+
     app = qtw.QApplication([])
     try:
         app.setStyleSheet(open(f"./skins/{name}.stylesheet", "r").read())

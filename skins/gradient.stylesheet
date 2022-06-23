@@ -47,3 +47,20 @@ QCheckBox{
     color: #ffffff;
     background: none;
 }
+QRadioButton{
+    background-color: none;
+    font-size: 12pt;
+    color: #fff;
+}
+QTabWidget:pane {
+    border: none;
+}
+QTabBar::tab {
+    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:1, y2:0, stop:0 rgba(205, 17, 59, 255), stop:1 rgba(255, 118, 0, 255));
+    color: white;
+    padding: 10px;
+}
+
+QTabBar::tab:selected {
+    background-color: rgba(255, 169, 0, 200);
+}

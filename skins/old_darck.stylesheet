@@ -43,3 +43,20 @@ QCheckBox{
     font-size: 12pt;
     color: #ffffff;
 }
+QRadioButton{
+    font-size: 12pt;
+    color: #fff;
+}
+QTabWidget:pane {
+    border: none;
+}
+QTabBar::tab {
+    background-color: rgb(47, 47, 47);
+    color: white;
+    padding: 10px;
+    border: 2px solid white;
+}
+
+QTabBar::tab:selected {
+    background-color: lightblue;
+}
