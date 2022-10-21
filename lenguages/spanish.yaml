@@ -3,10 +3,10 @@ root_window:
   boton_clear: Borrar
   errors:
     zero_divicion_error: "Error: no se puede dividir entre cero"
-    name_error: "Error: operación invalida"
+    name_error: "Error: syntax error"
 
 styles_window:
-  title: Configuracion
+  title: Configuración
   boton_select: Aplicar
   boton_brows: Agregar...
   boton_delet: Eliminar...
@@ -18,11 +18,11 @@ styles_window:
     title: Abrir Archivo
     messagebox:
       title: Temas
-      message: El tema se agrego correctamente
+      message: El tema se agregó correctamente
   tab:
     tab1: Temas
     tab2: Idiomas
-    message: "El idioma se guardo con exito\nReiniciar para aplicar los cambios"
+    message: "El idioma se guardó con éxito\nReiniciar para aplicar los cambios"
 
 delet_list:
   title: Eliminar estilo
@@ -32,4 +32,4 @@ delet_list:
     message: "Estas segura de eliminar\nlos temas seleccionados"
     messagebox:
       title: Eliminar temas
-      message: "Los temas seleccionados\nse eliminaron corectamente"
+      message: "Los temas seleccionados\nse eliminaron correctamente"

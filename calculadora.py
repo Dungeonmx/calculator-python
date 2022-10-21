@@ -1,7 +1,10 @@
+# -*- coding: utf-8 -*-
+
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import yaml
 import os
+import keyboard as kb
 
 
 class MainWindow(qtw.QMainWindow):
@@ -14,6 +17,7 @@ class MainWindow(qtw.QMainWindow):
         self.setings = qtw.QPushButton()
         self.setings.setStyleSheet("image: url(./textures/configuracion2.png)")
         self.panel = qtw.QLineEdit()
+        self.panel.setReadOnly(True)
         self.boton0 = qtw.QPushButton("0")
         self.boton1 = qtw.QPushButton("1")
         self.boton2 = qtw.QPushButton("2")
@@ -76,6 +80,27 @@ class MainWindow(qtw.QMainWindow):
         self.botonclear.clicked.connect(self.clearnumber)
         self.botonigual.clicked.connect(self.resultado)
 
+        kb.add_hotkey("zero", lambda: self.printnumber("0"))
+        kb.add_hotkey("one", lambda: self.printnumber("1"))
+        kb.add_hotkey("two", lambda: self.printnumber("2"))
+        kb.add_hotkey("three", lambda: self.printnumber("3"))
+        kb.add_hotkey("four", lambda: self.printnumber("4"))
+        kb.add_hotkey("five", lambda: self.printnumber("5"))
+        kb.add_hotkey("six", lambda: self.printnumber("6"))
+        kb.add_hotkey("seven", lambda: self.printnumber("7"))
+        kb.add_hotkey("eight", lambda: self.printnumber("8"))
+        kb.add_hotkey("nine", lambda: self.printnumber("9"))
+        kb.add_hotkey(".", lambda: self.printnumber("."))
+        kb.add_hotkey("shift+*", lambda: self.printnumber("*"))
+        kb.add_hotkey("+", lambda: self.printnumber("+"))
+        kb.add_hotkey("-", lambda: self.printnumber("-"))
+        kb.add_hotkey("shift+seven", lambda: self.printnumber("/"))
+        kb.add_hotkey("backspace", self.clearnumber)
+        kb.add_hotkey("supr", self.clearnumber)
+        kb.add_hotkey("enter", self.resultado)
+
+        kb.add_hotkey("up, down, right, left", lambda: self.printnumber(""))
+
         self.list = []
 
         self.layout_menu = qtw.QVBoxLayout()
@@ -94,7 +119,12 @@ class MainWindow(qtw.QMainWindow):
         endlist = ""
         self.list.append(number)
         for i in self.list:
-            endlist += i
+            if i == "*":
+                endlist += "x"
+            elif i == "/":
+                endlist += u"\u00f7"
+            else:
+                endlist += i
         self.panel.setText(endlist)
 
     def clearnumber(self):
@@ -103,7 +133,10 @@ class MainWindow(qtw.QMainWindow):
 
     def resultado(self):
         try:
-            resultado = eval(self.panel.text())
+            cuenta = ""
+            for i in self.list:
+                cuenta += i
+            resultado = eval(cuenta)
             self.clearnumber
             self.list = []
             self.printnumber(str(resultado))
@@ -113,9 +146,6 @@ class MainWindow(qtw.QMainWindow):
                 lg["root_window"]["errors"]["zero_divicion_error"]
                 )
             self.list = []
-        except NameError:
-            self.list = []
-            self.printnumber(lg["root_window"]["errors"]["name_error"])
 
     def showdialog(self):
         dialog = Dialog(self)
@@ -131,7 +161,7 @@ class Dialog(qtw.QMainWindow):
 
         self.setWindowTitle(lg["styles_window"]["title"])
         self.setWindowIcon(qtg.QIcon("./textures/edit-alt.png"))
-        self.setGeometry(0, 0, 400, 250)
+        self.setFixedSize(400, 250)
 
         self.widget = qtw.QWidget(self)
         self.setCentralWidget(self.widget)
@@ -321,7 +351,7 @@ if __name__ == "__main__":
         lenguage = config["lenguage"]
         file.close()
 
-    with open(f"./lenguages/{lenguage}.yaml", "r") as file:
+    with open(f"./lenguages/{lenguage}.yaml", "r", encoding="utf8") as file:
         lg = yaml.safe_load(file)
 
     app = qtw.QApplication([])

@@ -1,1 +1,5 @@
-/savestyle.yaml
+savestyle.yaml
+__pycache__
+build
+dist
+calculadora.spec
